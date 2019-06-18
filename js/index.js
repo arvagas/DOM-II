@@ -4,6 +4,7 @@
 let switchFlip = 0
 
 // Selectors
+const container = document.querySelectorAll('.container')
 const allA = document.querySelectorAll('a')
 const allP = document.querySelectorAll('p')
 const allH1 = document.querySelectorAll('h1')
@@ -13,18 +14,34 @@ const allImg = document.querySelectorAll('img')
 const logoHead = document.querySelector('.logo-heading')
 const navLinks = document.querySelectorAll('.nav-link')
 const signUpBtn = document.querySelectorAll('.btn')
-const container = document.querySelectorAll('.container')
+const contentSection = document.querySelector('.content-section')
+const footer = document.querySelector('footer')
 
 // Window Events
 window.addEventListener('resize', () => {
     logoHead.textContent = `${window.innerWidth} x ${window.innerHeight}`
 })
 window.addEventListener('load', () => {
-    logoHead.textContent = logoHead.textContent + ' - All Aboard!'
+    logoHead.textContent += ' - All Aboard!'
+})
+
+// Keyboard Events
+document.addEventListener('keydown', () => {
+    alert(`Literally no reason to use your keyboard`)
+})
+
+// Clipboard Events
+allP.forEach(item => {
+    item.addEventListener('copy', event => {
+        alert(`You're not allowed to copy that!`)
+    })
 })
 
 // Logo Events
 logoHead.addEventListener('dblclick', nightMode)
+logoHead.addEventListener('contextmenu', event => {
+    event.preventDefault()
+})
 
 // Navigation Bar Events
 navLinks.forEach(item => {
@@ -68,8 +85,10 @@ signUpBtn.forEach(item => {
     })
 })
 
-// Text Events
-
+// Footer Events
+footer.addEventListener('mouseenter', () => {
+    alert('Welcome to the down under, mate!')
+})
 
 // Event Functions
 function nightMode() {
@@ -118,10 +137,3 @@ function nightMode() {
         switchFlip = 0
     }
 }
-
-// function imgBorderChange(item) {
-//     item.style.borderColor = 'red'
-//     item.style.borderStyle = 'solid'
-//     item.style.borderWidth = '3px'
-//     item.style.borderRadius = '1000px'
-// }
