@@ -1,5 +1,8 @@
 // Your code goes here
 
+// Global Variables
+let switchFlip = 0
+
 // Selectors
 const allA = document.querySelectorAll('a')
 const allP = document.querySelectorAll('p')
@@ -16,6 +19,9 @@ const container = document.querySelectorAll('.container')
 window.addEventListener('resize', () => {
     logoHead.textContent = `${window.innerWidth} x ${window.innerHeight}`
 })
+window.addEventListener('load', () => {
+    logoHead.textContent = logoHead.textContent + ' - All Aboard!'
+})
 
 // Logo Events
 logoHead.addEventListener('dblclick', nightMode)
@@ -30,7 +36,28 @@ navLinks.forEach(item => {
 // Image Events
 allImg.forEach(item => {
     item.addEventListener('click', () => {
-        item.style.width = '50%'
+        if (item.style.width === '100%') {
+            item.style.width = '50%'  
+        }
+        else {
+            item.style.width = '100%'
+        }
+    })
+})
+allImg.forEach(item => {
+    item.addEventListener('mouseover', () => {
+        item.style.borderColor = 'red'
+        item.style.borderStyle = 'solid'
+        item.style.borderWidth = '3px'
+        item.style.borderRadius = '1000px'
+    })
+})
+allImg.forEach(item => {
+    item.addEventListener('mouseout', () => {
+        item.style.borderColor = 'white'
+        item.style.borderStyle = 'none'
+        item.style.borderWidth = '3px'
+        item.style.borderRadius = '10px'
     })
 })
 
@@ -41,26 +68,60 @@ signUpBtn.forEach(item => {
     })
 })
 
-// Event Functions
+// Text Events
 
+
+// Event Functions
 function nightMode() {
-    allP.forEach(item => {
-        item.style.color = 'white'
-        item.style.backgroundColor = 'darkgrey'
-    })
-    allA.forEach(item => {
-        item.style.color = 'white'
-    })
-    allH1.forEach(item => {
-        item.style.color = 'white'
-    })
-    allH2.forEach(item => {
-        item.style.color = 'white'
-    })
-    allH4.forEach(item => {
-        item.style.color = 'white'
-    })
-    container.forEach(item => {
-        item.style.backgroundColor = 'grey'
-    })
+    if (switchFlip === 0) {
+        allP.forEach(item => {
+            item.style.color = 'white'
+            item.style.backgroundColor = 'darkgrey'
+        })
+        allA.forEach(item => {
+            item.style.color = 'white'
+        })
+        allH1.forEach(item => {
+            item.style.color = 'white'
+        })
+        allH2.forEach(item => {
+            item.style.color = 'white'
+        })
+        allH4.forEach(item => {
+            item.style.color = 'white'
+        })
+        container.forEach(item => {
+            item.style.backgroundColor = 'grey'
+        })
+        switchFlip = 1
+    }
+    else {
+        allP.forEach(item => {
+            item.style.color = 'black'
+            item.style.backgroundColor = 'white'
+        })
+        allA.forEach(item => {
+            item.style.color = 'black'
+        })
+        allH1.forEach(item => {
+            item.style.color = 'black'
+        })
+        allH2.forEach(item => {
+            item.style.color = 'black'
+        })
+        allH4.forEach(item => {
+            item.style.color = 'black'
+        })
+        container.forEach(item => {
+            item.style.backgroundColor = 'white'
+        })
+        switchFlip = 0
+    }
 }
+
+// function imgBorderChange(item) {
+//     item.style.borderColor = 'red'
+//     item.style.borderStyle = 'solid'
+//     item.style.borderWidth = '3px'
+//     item.style.borderRadius = '1000px'
+// }
